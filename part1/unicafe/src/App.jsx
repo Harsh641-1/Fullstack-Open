@@ -2,6 +2,15 @@ import { useState } from "react"
 
 const Statistics = (props) => {
 
+  if (props.total === 0){
+    return (
+      <div>
+        <h1>Statistics</h1>
+        <p>No feedback given</p>
+        </div>
+    )
+  }
+
   return (
     <div>
        <h1>statistics</h1>
@@ -44,9 +53,6 @@ const App = () => {
   }
 
   const getAverage = () => {
-    if (scores.length === 0){
-      return 0
-    }
     const sum = scores.reduce((sum,score) => {
       return sum + score
     },0)
@@ -55,9 +61,6 @@ const App = () => {
   }
 
   const getPositiveFeedback = () => {
-    if (scores.length === 0){
-      return 0
-    }
     const totalPositive = scores.filter((score) => score === 1).length
     const positivePercentage = (totalPositive/total) * 100
     return positivePercentage
