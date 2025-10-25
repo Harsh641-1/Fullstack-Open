@@ -25,12 +25,27 @@ const App = () => {
     setVotes(copy)
     
   }
+
+  const getAnecdoteWithMostVote = () => {
+    let topVote = 0
+    let index = 0
+    for (const key in votes){
+       if (votes[key] > topVote){
+        topVote = votes[key]
+        index = key
+      }
+    }
+    return anecdotes[index]
+  }
   return (
     <div>
-      <div>{anecdotes[selected]}</div>
-      <div>has {votes[selected]} votes</div>
+      <h1>Anecdote of the day</h1>
+      <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
       <button onClick={vote}>Vote</button>
       <button onClick={getAnecdote}>next anecdote</button>
+      <h1>Anecdote with most votes</h1>
+      <p>{getAnecdoteWithMostVote()}</p>
     </div>
   )
 }
